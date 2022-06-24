@@ -1,11 +1,9 @@
 import { useRef, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import "./styles/Generator.css";
-//Why this one Work but not state
-let textArr = [];
-let startX, startY;
+
 export default function Generator() {
-  // const [textArr, setTextArr] = useState([]);
+  const [textArr, setTextArr] = useState([]);
   const [text, setText] = useState("");
   const [image, setImage] = useState("");
   const [offsets, setOffsets] = useState({
@@ -41,9 +39,9 @@ export default function Generator() {
     };
   }, []);
 
-  // useEffect(() => {
-  //   draw();
-  // }, [textArr]);
+  useEffect(() => {
+    draw();
+  }, [textArr]);
 
   const addText = () => {
     if (text.length < 1) return;
@@ -54,6 +52,8 @@ export default function Generator() {
       text: text,
       x: 50,
       y: y + 70,
+      startX: 0,
+      startY: 0,
     };
 
     // calc the size of this text for hit-testing purposes
@@ -61,18 +61,20 @@ export default function Generator() {
     t.width = contextRef.current.measureText(t.text).width;
     t.height = 20;
 
-    // setTextArr([...textArr, t]);
-    textArr.push(t);
+    setTextArr([...textArr, t]);
     draw();
     setText("");
   };
 
   const handleMouseDown = (e) => {
     e.preventDefault();
-    startX = parseInt(e.clientX - offsets.offsetX);
-    startY = parseInt(e.clientY - offsets.offsetY);
+    let startX = parseInt(e.clientX - offsets.offsetX);
+    let startY = parseInt(e.clientY - offsets.offsetY);
     textArr.map((i, index) => {
       if (textHittest(startX, startY, index)) {
+        var text = textArr[index];
+        text.startX = startX;
+        text.startY = startY;
         return setOffsets({ ...offsets, selectedText: index });
       }
     });
@@ -82,18 +84,17 @@ export default function Generator() {
       return;
     }
     e.preventDefault();
-    let mouseX = parseInt(e.pageX - offsets.offsetX);
-    let mouseY = parseInt(e.pageY - offsets.offsetY);
+    let mouseX = parseInt(e.clientX - offsets.offsetX);
+    let mouseY = parseInt(e.clientY - offsets.offsetY);
     var text = textArr[offsets.selectedText];
-    var dx = mouseX - startX;
-    var dy = mouseY - startY;
-    startX = mouseX;
-    startY = mouseY;
+    var dx = mouseX - text.startX;
+    var dy = mouseY - text.startY;
+    text.startX = mouseX;
+    text.startY = mouseY;
     text.x += dx;
     text.y += dy;
+
     draw();
-    // const newText = TextAr
-    // setTextArr(...textArr, text);
   };
   const handleMouseUp = (e) => {
     e.preventDefault();
@@ -138,6 +139,10 @@ export default function Generator() {
     link.href = img;
     link.click();
   };
+
+  const reset = () => {
+    setTextArr([]);
+  };
   return (
     <div className="generator">
       <div className="generator__container">
@@ -180,6 +185,12 @@ export default function Generator() {
               className="generator__btn generator__btn--text"
             >
               Add Text
+            </button>
+            <button
+              onClick={reset}
+              className="generator__btn generator__btn--text generator__btn--border"
+            >
+              clear
             </button>
           </div>
         </div>
