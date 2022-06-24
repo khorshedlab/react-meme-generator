@@ -36,7 +36,7 @@ function Home() {
       <div className="home__container">
         <div className="home__header">
           <h1 className="home__title">Meme-Generator</h1>
-          <a href="https://www.github.com" className="home__link-top">
+          <a href="https://github.com/khorshedlab/react-meme-generator" className="home__link-top">
             Github
           </a>
         </div>
