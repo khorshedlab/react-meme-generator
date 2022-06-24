@@ -1,0 +1,73 @@
+.generator__container {
+  max-width: 1100px;
+  width: 90%;
+  margin: 0 auto;
+}
+.generator__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 1.4rem;
+  border-bottom: 1px solid silver;
+}
+
+.generator__content {
+  margin-top: 2rem;
+  display: flex;
+}
+.generator__left {
+  flex: 0.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.generator__right {
+  flex: 0.5;
+  display: flex;
+  flex-direction: column;
+}
+.canvas {
+  border: 1px solid silver;
+}
+
+.generator__btn-container {
+  padding: 0.8rem 0;
+}
+.generator__btn {
+  padding: 0.6rem 2rem;
+  background-color: blueviolet;
+  border: none;
+  outline: none;
+  border-radius: 0.3rem;
+  color: white;
+  cursor: pointer;
+}
+.generator__sub-title {
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e5e5e5;
+}
+.generator__label {
+  font-size: 1.1rem;
+  padding: 0.5rem 0;
+  font-weight: 600;
+}
+.generator__input {
+  padding: 0.5rem;
+  border: 2px solid #e5e5e5;
+  width: 18rem;
+  outline: none;
+}
+.generator__input:focus {
+  outline: 1px solid blueviolet;
+}
+.generator__btn--text {
+  width: 20rem;
+  margin-top: 1.4rem;
+}
+.generator__btn--border {
+  background-color: transparent;
+  color: black;
+  border: 1px solid black;
+}

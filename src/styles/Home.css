@@ -1,0 +1,51 @@
+.home {
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  overflow: hidden;
+}
+.home__container {
+  max-width: 1100px;
+  width: 90%;
+  margin: 0 auto;
+}
+.home__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 1.4rem;
+  border-bottom: 1px solid silver;
+}
+.home__title {
+  font-size: 1.7rem;
+}
+.home__main {
+  padding: 2rem 1.4rem;
+}
+.home__main-title {
+  text-align: left;
+  font-size: 1.3rem;
+  margin-bottom: 1.3rem;
+}
+.home__memes-container {
+  display: grid;
+  grid-gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-auto-rows: 25rem;
+  grid-auto-flow: row dense;
+}
+
+/*footer*/
+
+.home__footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.home__copyright {
+  text-align: center;
+  font-family: "Courier New", Courier, monospace;
+}
+.home__link-bottom {
+  margin-left: 0.6rem;
+}
